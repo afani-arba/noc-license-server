@@ -38,6 +38,7 @@ import SDWANPage from "@/pages/SDWANPage";
 import FinanceReportPage from "@/pages/FinanceReportPage";
 import WACustomerServicePage from "@/pages/WACustomerServicePage";
 import PingToolPage from "@/pages/PingToolPage";
+import QRISHubPage from "@/pages/QRISHubPage";
 import ClientLogin from './pages/ClientPortal/ClientLogin';
 import ClientDashboard from './pages/ClientPortal/ClientDashboard';
 import { Capacitor } from '@capacitor/core';
@@ -325,6 +326,7 @@ function App() {
               <Route path="radius-server" element={<ProtectedRoute allowedRoles={["administrator", "super_admin"]} serviceKey="radius_server"><RadiusSettingsPage /></ProtectedRoute>} />
               {/* WA Customer Service */}
               <Route path="wa-customer-service" element={<ProtectedRoute allowedRoles={["administrator", "super_admin", "billing_staff"]} serviceKey="wa_customer_service"><WACustomerServicePage /></ProtectedRoute>} />
+              <Route path="qris-hub" element={<ProtectedRoute allowedRoles={["administrator", "super_admin", "billing_staff"]} serviceKey="license"><QRISHubPage /></ProtectedRoute>} />
             </Route>
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>

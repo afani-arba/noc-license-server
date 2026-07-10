@@ -3,7 +3,7 @@ import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useAuth, useEdition } from "@/App";
 import {
   LayoutDashboard, Users, Wifi, WifiOff, FileText, Server, Shield, LogOut, Menu, ChevronLeft, Settings, Bell, HardDrive, Terminal,
-  GitBranch, Route, Cable, ShieldAlert, Cpu, Monitor, BarChart2, AlertTriangle, ClipboardList, Download, CalendarClock, Radar, Zap, PieChart, TrendingUp, MessageCircle, Activity, Radio, Search
+  GitBranch, Route, Cable, ShieldAlert, Cpu, Monitor, BarChart2, AlertTriangle, ClipboardList, Download, CalendarClock, Radar, Zap, PieChart, TrendingUp, MessageCircle, Activity, Radio, Search, QrCode
 } from "lucide-react";
 
 const RpIcon = ({ className = "w-5 h-5" }) => (
@@ -71,6 +71,7 @@ const navItems = [
   { to: "/admin",          icon: Shield,          label: "User Management",        serviceKey: "settings",       adminOnly: true },
   { to: "/update",         icon: Download,        label: "Update Aplikasi",        serviceKey: "update",         adminOnly: true },
   { to: "/admin/license",  icon: ShieldAlert,     label: "Lisensi Sistem",         serviceKey: "license",        adminOnly: true },
+  { to: "/qris-hub",       icon: QrCode,          label: "QRIS HUB Dashboard",     serviceKey: "license",        adminOnly: true },
 ];
 
 // â”€â”€â”€ SidebarContent sebagai komponen TERPISAH di luar Layout â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€

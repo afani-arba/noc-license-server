@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Bukti Integrasi BRI QRIS Sandbox - PT. Arsya</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', sans-serif; background: #f0f4f8; display: flex; justify-content: center; padding: 30px; }
+  .card {
+    background: white; border-radius: 16px; padding: 40px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.12); max-width: 680px; width: 100%;
+  }
+  .header { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; border-bottom: 2px solid #003366; padding-bottom: 20px; }
+  .bri-logo { background: #003366; color: white; font-weight: bold; font-size: 14px; padding: 8px 14px; border-radius: 8px; letter-spacing: 1px; }
+  .arsya-logo { background: #0066cc; color: white; font-weight: bold; font-size: 14px; padding: 8px 14px; border-radius: 8px; }
+  .x-sign { font-size: 20px; color: #666; font-weight: bold; }
+  .title { font-size: 20px; font-weight: 700; color: #003366; }
+  .subtitle { font-size: 13px; color: #666; margin-top: 4px; }
+  .success-banner {
+    background: linear-gradient(135deg, #00b050, #00cc60);
+    color: white; border-radius: 10px; padding: 14px 20px;
+    display: flex; align-items: center; gap: 10px; margin-bottom: 24px;
+    font-weight: 600; font-size: 15px;
+  }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+  .info-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 14px; }
+  .info-box .label { font-size: 11px; color: #64748b; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+  .info-box .value { font-size: 13px; color: #1e293b; font-weight: 600; font-family: monospace; word-break: break-all; }
+  .info-box .status-ok { color: #00b050; font-size: 14px; }
+  .qr-section { text-align: center; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; margin-bottom: 20px; }
+  .qr-section h3 { font-size: 14px; color: #003366; font-weight: 700; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.5px; }
+  #qrcode { display: flex; justify-content: center; margin-bottom: 12px; }
+  .qr-label { font-size: 12px; color: #64748b; }
+  .steps { margin-bottom: 20px; }
+  .step { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-bottom: 1px solid #f1f5f9; }
+  .step:last-child { border-bottom: none; }
+  .step-num { background: #003366; color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; }
+  .step-info { flex: 1; }
+  .step-title { font-size: 13px; font-weight: 600; color: #1e293b; }
+  .step-detail { font-size: 12px; color: #64748b; margin-top: 2px; }
+  .step-status { font-size: 18px; }
+  .footer { border-top: 1px solid #e2e8f0; padding-top: 16px; font-size: 11px; color: #94a3b8; text-align: center; }
+  .timestamp { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 10px 16px; font-size: 12px; color: #1d4ed8; margin-bottom: 16px; font-family: monospace; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="header">
+    <div class="bri-logo">BRI</div>
+    <div class="x-sign">×</div>
+    <div class="arsya-logo">ARSYA</div>
+    <div>
+      <div class="title">Bukti Integrasi QRIS Sandbox</div>
+      <div class="subtitle">SNAP API v1.1 — MPM Dinamis</div>
+    </div>
+  </div>
+
+  <div class="success-banner">
+    <span>✅</span>
+    INTEGRASI BRI QRIS SANDBOX BERHASIL
+  </div>
+
+  <div class="timestamp">
+    📅 Tanggal: 10 Juli 2026, 14:19:40 WIB &nbsp;|&nbsp; Server: 103.157.116.29 &nbsp;|&nbsp; Container: noc-license-backend
+  </div>
+
+  <div class="grid">
+    <div class="info-box">
+      <div class="label">Aplikasi</div>
+      <div class="value">Arsya Billing Payment</div>
+    </div>
+    <div class="info-box">
+      <div class="label">Environment</div>
+      <div class="value" style="color:#e65c00">🔶 SANDBOX</div>
+    </div>
+    <div class="info-box">
+      <div class="label">X-PARTNER-ID</div>
+      <div class="value">457143</div>
+    </div>
+    <div class="info-box">
+      <div class="label">Merchant ID (MID)</div>
+      <div class="value">000001019000014</div>
+    </div>
+    <div class="info-box">
+      <div class="label">Terminal ID (TID)</div>
+      <div class="value">15003751</div>
+    </div>
+    <div class="info-box">
+      <div class="label">Reference No (BRI)</div>
+      <div class="value">730176282048</div>
+    </div>
+    <div class="info-box">
+      <div class="label">Amount</div>
+      <div class="value">Rp 10.000</div>
+    </div>
+    <div class="info-box">
+      <div class="label">Response Code</div>
+      <div class="value status-ok">✅ 2004700 Successful</div>
+    </div>
+  </div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-info">
+        <div class="step-title">GET ACCESS TOKEN — POST /snap/v1.0/access-token/b2b</div>
+        <div class="step-detail">HTTP 200 OK | Response Time: 0.38s | Bearer Token diterima</div>
+      </div>
+      <div class="step-status">✅</div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-info">
+        <div class="step-title">GENERATE QRIS — POST /snap/v1.1/qr/qr-mpm-generate</div>
+        <div class="step-detail">HTTP 200 OK | Response Time: 0.45s | qrContent valid diterima</div>
+      </div>
+      <div class="step-status">✅</div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-info">
+        <div class="step-title">QUERY STATUS — POST /snap/v1.1/qr/qr-mpm-query</div>
+        <div class="step-detail">HTTP 200 OK | Response Time: 0.25s | API endpoint aktif</div>
+      </div>
+      <div class="step-status">✅</div>
+    </div>
+  </div>
+
+  <div class="qr-section">
+    <h3>🔲 QR Code — Dapat Di-Scan dengan Aplikasi GPN / BRI Mobile</h3>
+    <div id="qrcode"></div>
+    <div class="qr-label" style="font-family:monospace; font-size:10px; word-break:break-all; color:#475569; margin-top:8px;">
+      00020101021226650013ID.CO.BRI.WWW011893600002011500375102150000010190000140303UME52041234530336054051000058021D5908PT Arsya6015JAKARTA SELATAN6105129506234011837152473017628204807081500375163044CC5
+    </div>
+  </div>
+
+  <div class="footer">
+    Dokumen ini dihasilkan secara otomatis dari server produksi PT. Arsya<br>
+    Client ID: 7dsh9ZtvCUuCZ4D93zAspt8LnGXFK4GT | Snap Key: Arsya Billing Payment
+  </div>
+</div>
+
+<script>
+var qrContent = "00020101021226650013ID.CO.BRI.WWW011893600002011500375102150000010190000140303UME5204123453033605405100005802ID5908PT Arsya6015JAKARTA SELATAN6105129506234011837152473017628204807081500375163044CC5";
+new QRCode(document.getElementById("qrcode"), {
+  text: qrContent,
+  width: 200,
+  height: 200,
+  colorDark: "#003366",
+  colorLight: "#ffffff",
+  correctLevel: QRCode.CorrectLevel.M
+});
+</script>
+</body>
+</html>
