@@ -4,31 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ARBA License Server Admin</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        mono: ['Inter', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
-        /* Sleek Modern Scrollbar */
+        
+        /* Ultra Sleek Modern Scrollbar */
         ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
+            width: 6px;
+            height: 6px;
         }
         ::-webkit-scrollbar-track {
             background: transparent;
         }
         ::-webkit-scrollbar-thumb {
-            background-color: #4b5563; /* Tailwind gray-600 */
+            background-color: #374151;
             border-radius: 10px;
-            border: 2px solid #1f2937; /* Tailwind gray-800 to match background */
         }
         ::-webkit-scrollbar-thumb:hover {
-            background-color: #6b7280; /* Tailwind gray-500 */
+            background-color: #4b5563;
         }
         * {
             scrollbar-width: thin;
-            scrollbar-color: #4b5563 transparent;
+            scrollbar-color: #374151 transparent;
         }
+
     </style>
 </head>
 <body class="bg-gray-900 text-gray-100 h-screen overflow-hidden flex text-sm">
@@ -70,7 +88,7 @@
                 <i data-lucide="headphones" class="w-4 h-4 mr-3 text-purple-400"></i> Support Tiket
             </button>
             <button onclick="switchTab('auditlog')" id="nav-auditlog" class="flex items-center px-4 py-2.5 hover:bg-gray-700 rounded-md transition-colors text-left w-full">
-                <i data-lucide="shield-check" class="w-4 h-4 mr-3 text-yellow-400"></i> Audit Log
+                <i data-lucide="shield-check" class="w-4 h-4 mr-3 text-yellow-400"></i> 📜 Audit Log
             </button>
             <button onclick="switchTab('paymentgw')" id="nav-paymentgw" class="flex items-center px-4 py-2.5 hover:bg-gray-700 rounded-md transition-colors text-left w-full">
                 <i data-lucide="credit-card" class="w-4 h-4 mr-3 text-orange-400"></i> Payment Gateway
@@ -802,10 +820,10 @@
                 </div>
             </div>
 
-            <!-- TAB: Audit Log - Bagian 8 -->
+            <!-- TAB: 📜 Audit Log - Bagian 8 -->
             <div id="tab-auditlog" class="hidden">
                 <div class="mb-6 flex justify-between items-center">
-                    <div><h3 class="text-xl font-bold">🛡️ Audit Log</h3><p class="text-gray-400 text-sm">Rekam jejak aktivitas admin dan klien.</p></div>
+                    <div><h3 class="text-xl font-bold">🛡️ 📜 Audit Log</h3><p class="text-gray-400 text-sm">Rekam jejak aktivitas admin dan klien.</p></div>
                     <button onclick="loadAuditLogs()" class="px-3 py-1.5 bg-gray-700 rounded text-sm hover:bg-gray-600">🔄 Refresh</button>
                 </div>
                 <div class="flex gap-2 mb-4 flex-wrap">
@@ -1103,7 +1121,7 @@
                 </div>
 
                 <div id="paycontent-bni" class="hidden max-w-2xl">
-                    <div class="bg-gray-800 rounded-lg border border-orange-500/40 p-6 shadow-[0_0_15px_rgba(249,115,22,0.1)]">
+                    <div class="bg-gray-800 rounded-lg border border-orange-500/40 p-6 shadow-lg shadow-orange-500/10">
                         <div class="flex items-center justify-between mb-4">
                             <h4 class="font-bold text-md flex items-center text-orange-400">
                                 <i data-lucide="wallet" class="w-4 h-4 mr-2"></i> BNI QRIS B2B SNAP API
@@ -1690,7 +1708,7 @@
                     <input type="number" id="l-price" value="500" class="w-full p-2 bg-gray-900 border border-gray-700 rounded text-sm focus:border-blue-500 outline-none">
                     <p class="text-[10px] text-gray-500 mt-1">Isi 0 jika tidak menggunakan sistem Auto-Invoicing / Pay-As-You-Grow.</p>
                 </div>
-                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-500 py-2 rounded font-medium">⚙️ Generate Key</button>
+                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-500 py-2 rounded font-medium">⚙️ 🔑 Generate Key</button>
             </form>
         </div>
     </div>
@@ -3417,7 +3435,7 @@
                 const typeBadge = `<span class="px-2 py-0.5 bg-gray-700 text-[10px] rounded uppercase text-gray-300 font-bold">${p.type}</span>`;
                 
                 const landingBadge = p.show_on_landing 
-                    ? `<span class="px-2 py-0.5 bg-green-500/10 text-green-400 border border-green-500/30 text-[10px] rounded font-bold">ðŸŒ🌐 Live on Landing</span>`
+                    ? `<span class="px-2 py-0.5 bg-green-500/10 text-green-400 border border-green-500/30 text-[10px] rounded font-bold">🌐 🌐 Live on Landing</span>`
                     : '';
                 
                 container.innerHTML += `
@@ -3822,12 +3840,12 @@
                         if (wd.status === 'pending') {
                             btnHtml = `
                                 <button onclick="openWdModal('approve', '${wd.id}', '${clientName}', ${wd.amount}, 0)" class="bg-blue-600 hover:bg-blue-500 text-white px-3 py-1.5 rounded text-xs font-bold w-full mb-1">✅ Approve</button>
-                                <button onclick="openWdModal('reject', '${wd.id}', '${clientName}', ${wd.amount}, 0)" class="bg-red-600 hover:bg-red-500 text-white px-3 py-1.5 rounded text-xs font-bold w-full">❌ Tolak</button>
+                                <button onclick="openWdModal('reject', '${wd.id}', '${clientName}', ${wd.amount}, 0)" class="bg-red-600 hover:bg-red-500 text-white px-3 py-1.5 rounded text-xs font-bold w-full">❌ ❌ Tolak</button>
                             `;
                         } else if (wd.status === 'processing') {
                             btnHtml = `
                                 <button onclick="openWdModal('complete', '${wd.id}', '${clientName}', ${wd.amount}, ${wd.transfer_fee || 0})" class="bg-green-600 hover:bg-green-500 text-white px-3 py-1.5 rounded text-[10px] font-bold w-full mb-1 leading-tight">💰 Selesai Transfer</button>
-                                <button onclick="openWdModal('reject', '${wd.id}', '${clientName}', ${wd.amount}, 0)" class="bg-red-600 hover:bg-red-500 text-white px-3 py-1.5 rounded text-[10px] font-bold w-full leading-tight">❌ Tolak</button>
+                                <button onclick="openWdModal('reject', '${wd.id}', '${clientName}', ${wd.amount}, 0)" class="bg-red-600 hover:bg-red-500 text-white px-3 py-1.5 rounded text-[10px] font-bold w-full leading-tight">❌ ❌ Tolak</button>
                             `;
                         }
 
@@ -4044,7 +4062,7 @@ async function testBriConnection() {
         function openWdModal(action, id, clientName, amount, estimatedFee = 0) {
             currentWdAction = action;
             currentWdId = id;
-            document.getElementById('wdModalAction').textContent = action === 'approve' ? 'Approve Penarikan' : (action === 'complete' ? 'Selesaikan Penarikan' : 'Tolak Penarikan');
+            document.getElementById('wdModalAction').textContent = action === 'approve' ? 'Approve Penarikan' : (action === 'complete' ? 'Selesaikan Penarikan' : '❌ Tolak Penarikan');
             document.getElementById('wdModalClient').textContent = clientName;
             document.getElementById('wdModalAmount').textContent = 'Rp ' + amount.toLocaleString();
             
