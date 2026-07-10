@@ -644,7 +644,9 @@ def admin_list_transactions(
 
 @router.post("/admin/transactions/{tx_id}/check")
 async def admin_check_transaction(tx_id: str, admin: str = Depends(require_admin)):
-    """Manual check status transaksi QRIS ke API provider (BNI/BRI)."""
+    """Manual check status transaksi QRIS ke API provider (BNI/BRI).
+    Membaca field gateway_provider dari transaksi untuk memilih gateway yang tepat.
+    """
     tx = c_txs.find_one({"id": tx_id})
     if not tx:
         raise HTTPException(404, "Transaksi tidak ditemukan")
@@ -652,18 +654,24 @@ async def admin_check_transaction(tx_id: str, admin: str = Depends(require_admin
     partner_ref = tx.get("partner_reference_no")
     if not partner_ref:
         raise HTTPException(400, "Transaksi tidak memiliki partner_reference_no")
+    
+    # Tentukan gateway berdasarkan data transaksi (bukan selalu BRI)
+    gateway_provider = tx.get("gateway_provider", "bri").lower()
         
     try:
-        import bri_qris
-        # Saat ini default cek ke BRI
-        status = await bri_qris.query_qris_status(partner_ref)
+        if gateway_provider == "bni":
+            import bni_qris
+            status = await bni_qris.query_qris_status(partner_ref)
+        else:
+            import bri_qris
+            status = await bri_qris.query_qris_status(partner_ref)
         
         code = status.get('responseCode', 'N/A')
         msg  = status.get('responseMessage', 'N/A')
         trx_status = status.get('transactionStatus', status.get('status', ''))
         
-        # Jika berhasil dibayar di sistem BRI tapi lokal belum
-        if (code in ['2005100', '200'] or trx_status in ['SUCCESS', 'PAID', '00', 'settlement']) and tx.get("status") != "paid":
+        # Jika berhasil dibayar di sistem provider tapi lokal belum
+        if (code in ['2005100', '200', '2007300'] or trx_status in ['SUCCESS', 'PAID', '00', 'settlement']) and tx.get("status") != "paid":
             # Update lokal menjadi PAID
             c_txs.update_one(
                 {"id": tx_id},
@@ -674,12 +682,12 @@ async def admin_check_transaction(tx_id: str, admin: str = Depends(require_admin
                 tx["client_id"], tx_id, tx["amount"],
                 tx.get("callback_url"), tx.get("noc_invoice_number"), tx.get("original_amount")
             )
-            return {"status": "success", "message": f"Status diperbarui menjadi PAID dari {tx.get('gateway_provider', 'BRI')}"}
+            return {"status": "success", "message": f"Status diperbarui menjadi PAID dari {gateway_provider.upper()}"}
             
-        return {"status": "success", "message": f"Status saat ini di provider: {msg} / {trx_status}", "raw": status}
+        return {"status": "success", "message": f"[{gateway_provider.upper()}] Status saat ini di provider: {msg} / {trx_status}", "raw": status}
         
     except Exception as e:
-        raise HTTPException(502, f"Gagal cek status ke provider: {str(e)}")
+        raise HTTPException(502, f"Gagal cek status ke provider {gateway_provider.upper()}: {str(e)}")
 
 
 @router.get("/admin/wallets")
