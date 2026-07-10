@@ -16,3 +16,23 @@ logs/
 # OS
 .DS_Store
 Thumbs.db
+
+# Debug & temp scripts (tidak perlu di-track)
+debug_*.py
+remote_*.py
+remote_*.html
+bri_qris_remote.*
+fix_bri_*.py
+update_bri_settings.py
+verify_bri_db.py
+test_merchant_id.py
+check_live_server.py
+patch_bri_qris.py
+sync_frontend.py
+gen_qris_test.py
+
+# DNS scripts
+dns_*.sh
+
+# MikroTik scripts
+jabung_*.rsc
